@@ -32,7 +32,7 @@ const Game = ({ scores, updateScores, movies, randomizeMovies }) => {
     />
   ));
 
-  return <section>{movieList}</section>;
+  return <section className="p-4 flex flex-wrap">{movieList}</section>;
 };
 
 export default Game;

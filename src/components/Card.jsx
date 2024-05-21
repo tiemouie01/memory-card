@@ -4,13 +4,13 @@ const Card = ({ title, posterPath, clickMovie }) => {
 
   return (
     <button
-      className="card"
+      className="dark:bg-slate-600 bg-slate-200 p-4 m-2 rounded-lg shadow-lg flex-1 md:min-w-48 min-w-32 max-w-48"
       onClick={() => {
         clickMovie(title);
       }}
     >
       <img src={path} alt={`${title} poster`} />
-      <p>{title}</p>
+      <p className="mt-2">{title}</p>
     </button>
   );
 };
