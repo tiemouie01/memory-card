@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import Card from "./components/Card";
+import Game from "./components/Game";
 import Header from "./components/Header";
 import { fetchMovies } from "./api";
 
@@ -23,18 +23,10 @@ function App() {
     };
   }, []);
 
-  const movieList = movies.map((movie) => (
-    <Card
-      key={movie.id}
-      title={movie.original_title}
-      posterPath={movie.poster_path}
-    />
-  ));
-
   return (
     <>
       <Header scores={scores}/>
-      <div>{movieList}</div>
+      <Game scores={scores} updateScores={updateScores} movies={movies}/>
     </>
   );
 }
