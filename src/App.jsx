@@ -1,14 +1,21 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Card from "./components/Card";
+import Header from "./components/Header";
 import { fetchMovies } from "./api";
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [scores, setScores] = useState({});
 
+  const updateScores = (currentScore, highScore) => {
+    setScores({ currentScore, highScore });
+  };
+
+  // API call used to collect movie details from The Movie Database.
   useEffect(() => {
     let isMounted = true;
-    
+
     fetchMovies(isMounted, setMovies);
 
     return () => {
@@ -26,6 +33,7 @@ function App() {
 
   return (
     <>
+      <Header scores={scores}/>
       <div>{movieList}</div>
     </>
   );
