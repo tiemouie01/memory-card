@@ -12,6 +12,12 @@ function App() {
     setScores({ currentScore, highScore });
   };
 
+  const randomizeMovies = () => {
+    const moviesCopy = [...movies];
+    moviesCopy.sort(() => Math.random() - 0.5);
+    setMovies(moviesCopy);
+  };
+
   // API call used to collect movie details from The Movie Database.
   useEffect(() => {
     let isMounted = true;
@@ -25,8 +31,13 @@ function App() {
 
   return (
     <>
-      <Header scores={scores}/>
-      <Game scores={scores} updateScores={updateScores} movies={movies}/>
+      <Header scores={scores} />
+      <Game
+        scores={scores}
+        updateScores={updateScores}
+        movies={movies}
+        randomizeMovies={randomizeMovies}
+      />
     </>
   );
 }
