@@ -39,14 +39,15 @@ const fetchMovies = async (isMounted, setMovies) => {
     pages.map(async (page) => {
       const response = await getData(page);
       if (isMounted) {
-        console.log(response);
         moviesReceived.push(...response);
       }
     })
   );
 
+  moviesReceived.sort(() => Math.random() - 0.5);
+
   if (isMounted) {
-    setMovies(moviesReceived);
+    setMovies(moviesReceived.slice(0,20));
   }
 };
 
