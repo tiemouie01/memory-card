@@ -6,10 +6,14 @@ import { fetchMovies } from "./api";
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [scores, setScores] = useState({});
+  const [scores, setScores] = useState({ currentScore: 0, highScore: 0});
 
-  const updateScores = (currentScore, highScore) => {
-    setScores({ currentScore, highScore });
+  const updateScores = (newScore) => {
+    if (newScore > scores.highScore) {
+      setScores({ currentScore: newScore, highScore: newScore });
+    } else {
+      setScores({ ...scores, currentScore: newScore });
+    }
   };
 
   const randomizeMovies = () => {
