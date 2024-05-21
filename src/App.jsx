@@ -1,10 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import Card from "./components/Card";
+import { fetchMovies } from "./api";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    
+    fetchMovies(isMounted, setMovies);
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const movieList = movies.map((movie) => (
+    <Card
+      key={movie.id}
+      title={movie.original_title}
+      posterPath={movie.poster_path}
+    />
+  ));
 
   return (
     <>
@@ -28,8 +49,9 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <div>{movieList}</div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
