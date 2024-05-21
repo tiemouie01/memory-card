@@ -1,4 +1,4 @@
-async function getConfig() {
+const getConfig = async () => {
   const url = "https://api.themoviedb.org/3/configuration";
   const options = {
     method: "GET",
@@ -13,11 +13,10 @@ async function getConfig() {
     .then((res) => res.json())
     .then((json) => console.log(json))
     .catch((err) => console.error("error:" + err));
-}
+};
 
-async function getData() {
-  const url =
-    "https://api.themoviedb.org/3/account/21277388/favorite/movies?language=en-US&page=1&sort_by=created_at.asc";
+const getData = async (page = 1) => {
+  const url = `https://api.themoviedb.org/3/account/21277388/favorite/movies?language=en-US&page=${page}&sort_by=created_at.asc`;
   const options = {
     method: "GET",
     headers: {
@@ -30,6 +29,25 @@ async function getData() {
   const response = await fetch(url, options);
   const movies = await response.json();
   return movies.results;
-}
+};
 
-export { getData, getConfig };
+const fetchMovies = async (isMounted, setMovies) => {
+  const moviesReceived = [];
+  const pages = Array.from({ length: 4 }, (_, i) => i + 1); // creates an array [1, 2, 3, 4]
+
+  await Promise.all(
+    pages.map(async (page) => {
+      const response = await getData(page);
+      if (isMounted) {
+        console.log(response);
+        moviesReceived.push(...response);
+      }
+    })
+  );
+
+  if (isMounted) {
+    setMovies(moviesReceived);
+  }
+};
+
+export { fetchMovies, getData, getConfig };
