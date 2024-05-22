@@ -4,7 +4,7 @@ const Card = ({ title, posterPath, clickMovie }) => {
 
   return (
     <button
-      className="dark:bg-slate-600 bg-slate-200 p-4 m-2 rounded-lg shadow-lg flex-1 lg:min-w-48 min-w-32 max-w-48 transition-all hover:translate-y-[-0.5rem] dark:hover:shadow-white hover:shadow-slate-500"
+      className="dark:bg-slate-600 bg-slate-200 p-4 m-2 rounded-lg shadow-lg flex-1 lg:min-w-48 min-w-32 max-w-48 transition-all md:hover:translate-y-[-0.5rem] dark:md:hover:shadow-white md:hover:shadow-slate-500"
       onClick={() => {
         clickMovie(title);
       }}
