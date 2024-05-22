@@ -1,4 +1,4 @@
-# Movie Game
+# Movie Memory Card Game
 
 This project is a simple game built with React. The game fetches movie data from The Movie Database (TMDB) and presents it to the user in a fun and interactive way.
 
