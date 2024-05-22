@@ -31,7 +31,7 @@ const getData = async (page = 1) => {
   return movies.results;
 };
 
-const fetchMovies = async (isMounted, setMovies) => {
+const fetchMovies = async (isMounted, updateMovies) => {
   const moviesReceived = [];
   const pages = Array.from({ length: 4 }, (_, i) => i + 1); // creates an array [1, 2, 3, 4]
 
@@ -47,7 +47,7 @@ const fetchMovies = async (isMounted, setMovies) => {
   moviesReceived.sort(() => Math.random() - 0.5);
 
   if (isMounted) {
-    setMovies(moviesReceived.slice(0,20));
+    updateMovies(moviesReceived.slice(0,20));
   }
 };
 
